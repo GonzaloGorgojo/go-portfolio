@@ -6,7 +6,7 @@ import (
 
 type Experience struct {
 	ID          uint      `gorm:"primary_key" json:"id"`
-	Company     string    `json:"company" binding:"required"`
+	Company     string    `json:"company" validate:"required"`
 	Title       string    `json:"title" validate:"required"`
 	Location    string    `json:"location" validate:"required"`
 	Description string    `json:"description" validate:"required"`
