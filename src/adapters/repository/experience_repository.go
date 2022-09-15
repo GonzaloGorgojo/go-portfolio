@@ -11,6 +11,7 @@ type experienceRepository struct {
 
 type ExperienceRepository interface {
 	FindAll(u []*model.Experience) ([]*model.Experience, error)
+	AddOne(u *model.Experience) (*model.Experience, error)
 }
 
 func NewExperienceRepository(db *gorm.DB) ExperienceRepository {
@@ -19,6 +20,16 @@ func NewExperienceRepository(db *gorm.DB) ExperienceRepository {
 
 func (ur *experienceRepository) FindAll(u []*model.Experience) ([]*model.Experience, error) {
 	err := ur.db.Find(&u).Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	return u, nil
+}
+
+func (ur *experienceRepository) AddOne(u *model.Experience) (*model.Experience, error) {
+	err := ur.db.Create(&u).Error
 
 	if err != nil {
 		return nil, err

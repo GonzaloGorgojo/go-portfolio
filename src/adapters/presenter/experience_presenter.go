@@ -7,6 +7,7 @@ type experiencePresenter struct {
 
 type ExperiencePresenter interface {
 	ResponseExperience(us []*model.Experience) []*model.Experience
+	ResponseAddOne(us *model.Experience) *model.Experience
 }
 
 func NewExperiencePresenter() ExperiencePresenter {
@@ -14,8 +15,11 @@ func NewExperiencePresenter() ExperiencePresenter {
 }
 
 func (up *experiencePresenter) ResponseExperience(us []*model.Experience) []*model.Experience {
-	for _, u := range us {
-		u.Name = "Mr." + u.Name
-	}
+
+	return us
+}
+
+func (up *experiencePresenter) ResponseAddOne(us *model.Experience) *model.Experience {
+
 	return us
 }

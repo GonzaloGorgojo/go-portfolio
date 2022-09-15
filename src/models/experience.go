@@ -5,11 +5,15 @@ import (
 )
 
 type Experience struct {
-	ID        uint      `gorm:"primary_key" json:"id"`
-	Name      string    `json:"name"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	DeletedAt time.Time `json:"deleted_at"`
+	ID          uint      `gorm:"primary_key" json:"id"`
+	Company     string    `json:"company" binding:"required"`
+	Title       string    `json:"title" validate:"required"`
+	Location    string    `json:"location" validate:"required"`
+	Description string    `json:"description" validate:"required"`
+	CreatedAt   time.Time `json:"created_at"`
+	UpdatedAt   time.Time `json:"updated_at"`
 }
 
-func (Experience) TableName() string { return "experiences" }
+func (Experience) TableName() string {
+	return "experiences"
+}

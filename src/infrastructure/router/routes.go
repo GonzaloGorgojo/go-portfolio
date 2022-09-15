@@ -11,6 +11,7 @@ func NewRouter(e *echo.Echo, c controller.AppController) *echo.Echo {
 	e.Use(middleware.Recover())
 
 	e.GET("/experience", func(context echo.Context) error { return c.GetExperience(context) })
+	e.POST("/experience", func(context echo.Context) error { return c.AddExperience(context) })
 
 	return e
 }

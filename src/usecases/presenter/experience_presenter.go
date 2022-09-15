@@ -6,4 +6,5 @@ import (
 
 type ExperiencePresenter interface {
 	ResponseExperience(u []*model.Experience) []*model.Experience
+	ResponseAddOne(u *model.Experience) *model.Experience
 }

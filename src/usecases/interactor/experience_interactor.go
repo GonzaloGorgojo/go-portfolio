@@ -13,6 +13,7 @@ type experienceInteractor struct {
 
 type ExperienceInteractor interface {
 	Get(u []*model.Experience) ([]*model.Experience, error)
+	AddOne(u *model.Experience) (*model.Experience, error)
 }
 
 func NewExperienceInteractor(r repository.ExperienceRepository, p presenter.ExperiencePresenter) ExperienceInteractor {
@@ -26,4 +27,13 @@ func (us *experienceInteractor) Get(u []*model.Experience) ([]*model.Experience,
 	}
 
 	return us.ExperiencePresenter.ResponseExperience(u), nil
+}
+
+func (us *experienceInteractor) AddOne(u *model.Experience) (*model.Experience, error) {
+	u, err := us.ExperienceRepository.AddOne(u)
+	if err != nil {
+		return nil, err
+	}
+
+	return us.ExperiencePresenter.ResponseAddOne(u), nil
 }

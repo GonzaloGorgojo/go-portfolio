@@ -6,4 +6,5 @@ import (
 
 type ExperienceRepository interface {
 	FindAll(u []*model.Experience) ([]*model.Experience, error)
+	AddOne(u *model.Experience) (*model.Experience, error)
 }
